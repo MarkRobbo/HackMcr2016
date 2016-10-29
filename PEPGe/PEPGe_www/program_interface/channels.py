@@ -79,8 +79,12 @@ def append_tvmaze_info(channel_data):
         # For each show, retrieve and add additional information.
         for show in show_list:
             extra = get_more_info(show['title'])
-            show['rating'] = extra[0]['show']['rating']['average']
-            show['image'] = extra[0]['show']['image']['medium']
+            try:
+                show['rating'] = extra[0]['show']['rating']['average']
+                show['image'] = extra[0]['show']['image']['medium']
+            except:
+                show['rating'] = 0
+                show['image'] = None
 
 def get_channel_data(channels, duration, detail=2, siteId=1, time=None):
     """Get channel data for the given parameters.
