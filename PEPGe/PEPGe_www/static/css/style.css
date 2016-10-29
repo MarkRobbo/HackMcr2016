@@ -15,13 +15,18 @@ body { font-family: sans-serif; }
 }
 
 .grid-item {
+    position: relative;
     width: 160px;
     height: 120px;
     float: left;
-    background: #0381dd;
-    border: 2px solid #333;
+    background: #000;
+    border: 1px solid #000;
     border-color: hsla(0, 0%, 0%, 0.5);
     border-radius: 5px;
+    background-image: url("https://images-na.ssl-images-amazon.com/images/M/MV5BMTQ0ODYzODc0OV5BMl5BanBnXkFtZTgwMDk3OTcyMDE@._V1_SY1000_CR0,0,678,1000_AL_.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-origin: center;
 }
 
 .grid-item--width2 { width: 320px; }
@@ -46,6 +51,26 @@ body { font-family: sans-serif; }
 
 #slider span {
     width: 20px;
+}
+
+.grid-item span {
+    padding: 3px;
+    color: #ffffff;
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+.grid-item .title {
+    font-size: 20px;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.grid-item .channel {
+    font-size: 16px;
+    position: absolute;
+    bottom: 0;
+    left: 0;
 }
 
 
