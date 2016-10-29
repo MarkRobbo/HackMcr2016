@@ -3,4 +3,4 @@ from django.http import HttpResponse
 
 # Create your views here.
 def index (req):
-    return render(req, '/PEPGe_www/templates/index.html')
+    return render(req, 'index.html')
