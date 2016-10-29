@@ -21,11 +21,22 @@ function updateGrid() {
         url: "/tv-listing",
         success: function(programmeData){
             // Loop through returned data about each programme and create a tile for it
+            var html = [];
             $.each(programmeData, function(channel, programme) {
-                // TODO: create tile here
+                html[html.length] = buildTileHTML(channel, programme['name'], programme['image']);
             });
+            $("#guide").append(html);
         }
     });
+}
+
+// Builds html for a tile
+function buildTileHTML(channel, name, image) {
+    var tileHTML = '<div class="grid-item" style="background-image: url(' + image + ');">' +
+                   '<span class="title">' + name + '</span>' +
+                   '<span class="channel">' + channel + '</span>' +
+                   '</div>';
+    return tileHTML;
 }
 
 // Add addHours functionality to Date
