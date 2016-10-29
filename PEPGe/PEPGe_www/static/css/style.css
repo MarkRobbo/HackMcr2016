@@ -31,3 +31,21 @@ body { font-family: sans-serif; }
 .grid-item--height2 { height: 200px; }
 .grid-item--height3 { height: 260px; }
 .grid-item--height4 { height: 360px; }
+
+#slider {
+    width: 100%;
+    margin: 20px;
+    margin-top: 50px;
+}
+
+#timeSlider {
+    width: calc(100% - 170px);
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+#slider span {
+    width: 20px;
+}
+
+
