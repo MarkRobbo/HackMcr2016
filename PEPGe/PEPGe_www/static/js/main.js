@@ -5,4 +5,50 @@ $( document ).ready(function() {
         columnWidth: 160
     });
 
+    $('#timeSlider').slider({
+        tooltip: 'always',
+        formatter: function(value) {
+            return getTime(value);
+        }
+    });
+
 });
+
+// Add addHours functionality to Date
+Date.prototype.addHours = function(h) {
+    this.setTime(this.getTime() + (h*60*60*1000));
+    return this;
+};
+
+// Translates slider time to human readable minutes
+// Time from 0-24, 12 is now
+function getTime(time) {
+    returnStr = "";
+
+    // Normalise time to be centered around 0
+    time = time - 12;
+
+    // Get the current time and add difference
+    var d = new Date();
+
+    // 0 is now
+    if (time == 0) {
+        return "Now (" + d.getHours() + ":" + ("0" + d.getMinutes()).slice(-2) + ")";
+    }
+
+    d.addHours(time);
+
+    // Add relative time to string
+    if (time > 0) {
+        sign = "+";
+    } else {
+        sign = "";
+    }
+    returnStr += sign + time + "hrs ";
+
+    // Add absolute time to string
+    returnStr += "(" + d.getHours() + ":" + ("0" + d.getMinutes()).slice(-2) + ")";
+
+    // Return the time
+    return returnStr;
+}
