@@ -12,7 +12,21 @@ $( document ).ready(function() {
         }
     });
 
+    updateGrid();
 });
+
+// Updates the grid with new data from the endpoint
+function updateGrid() {
+    $.ajax({
+        url: "/tv-listing",
+        success: function(programmeData){
+            // Loop through returned data about each programme and create a tile for it
+            $.each(programmeData, function(channel, programme) {
+                // TODO: create tile here
+            });
+        }
+    });
+}
 
 // Add addHours functionality to Date
 Date.prototype.addHours = function(h) {
