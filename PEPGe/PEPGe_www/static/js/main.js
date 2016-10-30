@@ -63,8 +63,14 @@ var CHANNELS = [
     6534, 6548, 6753, 6754, 6758, 6761, 6765
 ];
 
+/**
+ * The program display grid.
+ */
 function Grid ()
 {
+    /**
+     * Shortcut to the jQuery object.
+     */
     var $grid = $('.grid');
 
     $grid.masonry({
@@ -74,6 +80,7 @@ function Grid ()
     });
 
     var current_tiles = [];
+    $grid.masonry();
 
     function click_handler ()
     {
@@ -109,7 +116,9 @@ function Grid ()
                                          show['image'],
                                          show['relevance']));
 
-            $grid.prepend($(new_tiles)).masonry('prepended', $(new_tiles), true);
+            var temp = $(new_tiles);
+
+            $grid.prepend(temp).masonry('prepended', temp, true);
             $grid.masonry('reloadItems');
             $grid.masonry('layout');
         });
