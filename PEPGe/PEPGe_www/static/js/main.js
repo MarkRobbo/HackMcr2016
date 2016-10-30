@@ -69,7 +69,7 @@ function Grid ()
 
     $grid.masonry({
         itemSelector: '.grid-item',
-        columnWidth: 100,
+        columnWidth: 50,
         gutter: 5
     });
 
