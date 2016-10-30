@@ -84,7 +84,7 @@ def append_tvmaze_info(channel_data):
                 show['image'] = extra[0]['show']['image']['medium']
             except:
                 show['rating'] = 0
-                show['image'] = 'https://chosenlawyers.com/assets/img/video.png'
+                show['image'] = '/static/images/video.png'
 
 def get_channel_data(channels, duration, detail=2, siteId=1, time=None):
     """Get channel data for the given parameters.
@@ -112,6 +112,9 @@ def get_channel_data(channels, duration, detail=2, siteId=1, time=None):
                 status:
                 image:
                 relevance:
+                genre:
+                subgenre:
+                id:
             }
         }
     """
@@ -128,7 +131,6 @@ def get_channel_data(channels, duration, detail=2, siteId=1, time=None):
     # Produce the return dict from the acquired data
     ret = {}
     for channel in data:
-
         ret[channel['title']] = {}
         ret[channel['title']]['name'] = channel['program']['title']
         ret[channel['title']]['start'] = channel['program']['start']
@@ -138,5 +140,8 @@ def get_channel_data(channels, duration, detail=2, siteId=1, time=None):
         ret[channel['title']]['status'] = channel['program']['scheduleStatus']
         ret[channel['title']]['image'] = channel['program']['image']
         ret[channel['title']]['relevance'] = channel['program']['rating']
+        ret[channel['title']]['genre'] = channel['program']['genre']
+        ret[channel['title']]['subgenre'] = channel['program']['subgenre']
+        ret[channel['title']]['id'] = channel['program']['channelid']
 
     return ret
