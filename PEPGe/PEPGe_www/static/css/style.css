@@ -1,5 +1,8 @@
 * { box-sizing: border-box; }
 
+.page-header h1 {
+    color: white;
+}
 
 .grid {
     background-color:rgba(0, 0, 0, 0.0);
@@ -26,13 +29,18 @@
     background-origin: center;
 }
 
-.grid-item .title .grid-item--size1 { font-size: 10px;}
 .grid-item--size2 { width: 155px; height: 240px; }
-.grid-item .grid-item--size2 .title { font-size: 15px;}
 .grid-item--size3 { width: 210px; height: 320px; }
-.grid-item .grid-item--size3 .title { font-size: 20px;}
-.grid-item--size4 { width: 265px; height: 400px; }
-.grid-item .grid-item--size4 .title { font-size: 25px;}
+.grid-item--size3 { width: 265px; height: 400px; }
+
+.grid-item:hover {
+    cursor:pointer
+}
+
+.grid-item.expanded {
+    width: 625px;
+    height: 480px;
+}
 
 #slider {
     width: 100%;
@@ -48,6 +56,7 @@
 
 #slider span {
     width: 20px;
+    color: white;
 }
 
 .grid-item span {
@@ -78,6 +87,7 @@ body {
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-position: top center;
+    background-size: cover;
     color: #fff;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale
