@@ -100,7 +100,10 @@
     font-size: 16px;
     position: absolute;
     bottom: 0;
-    left: 0;
+    right: 0;
+    left: 325px;
+    width: 300px;
+    height: 480px;
 }
 
 .slider-selection {
