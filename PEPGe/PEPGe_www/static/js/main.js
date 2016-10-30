@@ -319,6 +319,11 @@ $(document).ready(function() {
             return getTime(value);
         }
     }).on('slideStop', grid.refresh);
+
+    $('.rating').barrating({
+        theme: 'fontawesome-stars',
+        readonly: true
+    });
 });
 
 // Add addHours functionality to Date
