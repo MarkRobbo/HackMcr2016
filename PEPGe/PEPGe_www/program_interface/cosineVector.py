@@ -5,7 +5,7 @@ def programSimilarity(chanel, time):
     #ranking of favourite programs
     # order is [rating, genre, sub genre + genre, channel]
     # this is made up testing data based on one user
-    programFavourite = {"Overboard": [8.5, 6, 4, 'ITV'], "Saturday Kitchen Live": [9,3,10,'BBC One Lon']}
+    programFavourite = {"Overboard": [8.5, 6, 4, 'ITV'], "Saturday Kitchen Live": [9,3,10,'BBC One Lon'], "Later... with Jools Holland": [1,4,6,'BBC Two Eng']}
     dic = channels.get_channel_data(chanel, time)
     #data = [rating, genre, sub genre + genre, channel]
     outerResults = {}
