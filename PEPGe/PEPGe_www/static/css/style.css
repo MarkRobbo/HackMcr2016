@@ -18,7 +18,7 @@
     width: 100px;
     height: 160px;
     float: left;
-    margin-bottom: 5px;
+    margin-bottom: 10px;
     background: #000;
     background-image: url("https://images-na.ssl-images-amazon.com/images/M/MV5BMTQ0ODYzODc0OV5BMl5BanBnXkFtZTgwMDk3OTcyMDE@._V1_SY1000_CR0,0,678,1000_AL_.jpg");
     background-size: cover;
@@ -26,8 +26,13 @@
     background-origin: center;
 }
 
-.grid-item--size2 { width: 205px; height: 320px; }
-.grid-item--size3 { width: 310px; height: 480px; }
+.grid-item .title .grid-item--size1 { font-size: 10px;}
+.grid-item--size2 { width: 155px; height: 240px; }
+.grid-item .grid-item--size2 .title { font-size: 15px;}
+.grid-item--size3 { width: 210px; height: 320px; }
+.grid-item .grid-item--size3 .title { font-size: 20px;}
+.grid-item--size4 { width: 265px; height: 400px; }
+.grid-item .grid-item--size4 .title { font-size: 25px;}
 
 #slider {
     width: 100%;
@@ -52,7 +57,6 @@
 }
 
 .grid-item .title {
-    font-size: 20px;
     position: absolute;
     top: 0;
     left: 0;
