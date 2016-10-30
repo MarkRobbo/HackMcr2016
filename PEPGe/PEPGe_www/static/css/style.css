@@ -12,8 +12,15 @@ html, body, .container-fluid {
     color: white;
 }
 
+#main {
+    min-height: 500px;
+}
+
 #loading {
-    margin: 75px auto;
+    position: absolute;
+    top: 0;
+    left: calc(50% - 88px);
+    margin: 100px auto;
     width: 175px;
     height: 175px;
 }
