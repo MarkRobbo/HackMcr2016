@@ -19,7 +19,10 @@ $( document ).ready(function() {
 function updateGrid() {
     $.ajax({
         url: "/tv-listing",
+        data: {channels: '2002,2006,6000,1621', time: new Date().getTime()},
         success: function(programmeData){
+            console.log(programmeData)
+
             // Loop through returned data about each programme and create a tile for it
             var html = [];
             $.each(programmeData, function(channel, programme) {

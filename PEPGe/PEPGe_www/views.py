@@ -8,4 +8,9 @@ def index (req):
     return render(req, 'index.html')
 
 def tv_listing (req):
-    return JsonResponse(channels.get_channel_data(["2002", "2006"], 1))
+    channel_input = req.GET.get('channels').split(',')
+    time = req.GET.get('time')
+
+    return JsonResponse(channels.get_channel_data(channel_input,
+                                                  1,
+                                                  time=time))

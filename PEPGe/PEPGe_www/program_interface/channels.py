@@ -128,6 +128,7 @@ def get_channel_data(channels, duration, detail=2, siteId=1, time=None):
     # Produce the return dict from the acquired data
     ret = {}
     for channel in data:
+
         ret[channel['title']] = {}
         ret[channel['title']]['name'] = channel['program']['title']
         ret[channel['title']]['start'] = channel['program']['start']
