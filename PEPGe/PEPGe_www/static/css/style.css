@@ -1,5 +1,8 @@
 * { box-sizing: border-box; }
 
+.page-header 3h1 {
+    color: white;
+}
 
 .grid {
     background-color:rgba(0, 0, 0, 0.0);
@@ -43,6 +46,7 @@
 
 #slider span {
     width: 20px;
+    color: white;
 }
 
 .grid-item span {
@@ -74,6 +78,7 @@ body {
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-position: top center;
+    background-size: cover;
     color: #fff;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale
