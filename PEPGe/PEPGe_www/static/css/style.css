@@ -15,11 +15,12 @@ html, body, .container-fluid {
 #loading {
     margin: 75px auto;
     width: 175px;
+    height: 175px;
 }
 
 .grid {
     background-color:rgba(0, 0, 0, 0.0);
-    max-width: 1200px;
+    max-width: 1200px
 }
 
 /* clearfix */
