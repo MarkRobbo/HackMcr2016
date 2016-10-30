@@ -299,8 +299,8 @@ Tile.prototype.get_html = function () {
     progDurationInt = progDurationInt + startInt;
     var endDate = new Date(progDurationInt);
 
-    var startDateString = startDate.getHours() + ":" + startDate.getMinutes();
-    var endDateString = endDate.getHours() + ":" + endDate.getMinutes();
+    var startDateString = startDate.getHours() + ":" + ('0' + startDate.getMinutes()).slice(-2);
+    var endDateString = endDate.getHours() + ":" + ('0' + endDate.getMinutes()).slice(-2);
 
     var res = "     " + startDateString + " - " + endDateString;
     channel.append($('<span class="duration" />').html(res));
