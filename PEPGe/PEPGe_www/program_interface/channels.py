@@ -84,7 +84,7 @@ def append_tvmaze_info(channel_data):
                 show['image'] = extra[0]['show']['image']['medium']
             except:
                 show['rating'] = 0
-                show['image'] = None
+                show['image'] = 'https://chosenlawyers.com/assets/img/video.png'
 
 def get_channel_data(channels, duration, detail=2, siteId=1, time=None):
     """Get channel data for the given parameters.
