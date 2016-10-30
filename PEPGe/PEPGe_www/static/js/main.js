@@ -63,6 +63,65 @@ var CHANNELS = [
     6534, 6548, 6753, 6754, 6758, 6761, 6765
 ];
 
+function Grid ()
+{
+    var $grid = $('.grid');
+
+    $grid.masonry({
+        itemSelector: '.grid-item',
+        columnWidth: 100,
+        gutter: 5
+    });
+
+    var current_tiles = [];
+
+    function click_handler ()
+    {
+        console.log(this);
+        $(this).toggleClass('expanded');
+        $grid.masonry();
+    }
+    $grid.on('click', '.grid-item', click_handler);
+
+    function load_data (callback)
+    {
+        $.ajax({
+            url: '/tv-listing',
+            method: 'POST',
+            data: {
+                channels: CHANNELS.slice(0, 20).join(','),
+                time: new Date().addHours($('#timeSlider').val() - 12).getTime()
+            },
+            success: function (data) {
+                if (callback)
+                    callback(data);
+            }
+        });
+    }
+
+    function update_grid (program)
+    {
+        var new_tiles = [];
+
+        $.each(program, function (channel, show) {
+            new_tiles.push(buildTileHTML(channel,
+                                         show['name'],
+                                         show['image'],
+                                         show['relevance']));
+
+            $grid.prepend($(new_tiles)).masonry('prepended', $(new_tiles), true);
+            $grid.masonry('reloadItems');
+            $grid.masonry('layout');
+        });
+    }
+
+    this.refresh = function () {
+        load_data(function (data) {
+            update_grid(data);
+        });
+    };
+}
+
 function range (start, end) {
     if (end === null) {
         start = 0;
@@ -76,56 +135,17 @@ function range (start, end) {
     return a;
 }
 
-$( document ).ready(function() {
-
-    $('.grid').masonry({
-        itemSelector: '.grid-item',
-        columnWidth: 100,
-        gutter:5
-    });
+$(document).ready(function() {
+    var grid = new Grid();
+    grid.refresh();
 
     $('#timeSlider').slider({
         tooltip: 'always',
         formatter: function(value) {
             return getTime(value);
         }
-    }).on('slide', updateGrid);
-
-    $('.grid').on('click', '.grid-item', function () {
-        $(this).toggleClass('expanded');
-        $('.grid').masonry();
-    });
-
-    updateGrid();
+    }).on('slide', grid.refresh);
 });
-
-// Updates the grid with new data from the endpoint
-function updateGrid() {
-    $.ajax({
-        url: '/tv-listing',
-        method: 'POST',
-        data: {
-            channels: CHANNELS.slice(0,20).join(','),
-            time: new Date().addHours($('#timeSlider').val() - 12).getTime()
-        },
-        success: function(programmeData){
-            // Loop through returned data about each programme and create a tile for it
-            var html = [];
-            $.each(programmeData, function(channel, programme) {
-                html.push(buildTileHTML(channel,
-                                        programme['name'],
-                                        programme['image'],
-                                        programme['relevance']));
-            });
-
-            html = $(html);
-
-            $('.grid').prepend(html).masonry('prepended', html, true);
-            $('.grid').masonry('reloadItems');
-            $('.grid').masonry('layout');
-        }
-    });
-}
 
 // Builds html for a tile
 function buildTileHTML(channel, name, image, relevance) {
