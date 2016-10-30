@@ -256,7 +256,7 @@ Tile.prototype.get_html = function () {
     e.css('background-image', 'url(' + this.get_image() + ')');
     e.append($('<span class="title" />').html(this.get_title()));
     e.append($('<span class="channel" />').html(this.get_channel()));
-    e.append($('<span class="description" />').html(this.get_desc()));
+    e.append($('<div class="description-container"<span class="description" /></div>').html(this.get_desc()));
 
     return e.get(0);
 };
