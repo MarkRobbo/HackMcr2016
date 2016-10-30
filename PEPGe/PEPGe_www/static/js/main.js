@@ -100,16 +100,22 @@ function updateGrid() {
         url: '/tv-listing',
         method: 'POST',
         data: {
-            channels: CHANNELS.slice(0, 100).join(','),
+            channels: CHANNELS.slice(0,20).join(','),
             time: new Date().addHours($('#timeSlider').val() - 12).getTime()
         },
         success: function(programmeData){
             // Loop through returned data about each programme and create a tile for it
             var html = [];
             $.each(programmeData, function(channel, programme) {
-                html[html.length] = buildTileHTML(channel, programme['name'], programme['image']);
+                html.push(buildTileHTML(channel,
+                                        programme['name'],
+                                        programme['image'],
+                                        programme['relevance']));
             });
-            $('#guide').append(html);
+
+            html = $(html);
+
+            $('.grid').prepend(html).masonry('prepended', html, true);
             $('.grid').masonry('reloadItems');
             $('.grid').masonry('layout');
         }
@@ -117,12 +123,20 @@ function updateGrid() {
 }
 
 // Builds html for a tile
-function buildTileHTML(channel, name, image) {
-    var tileHTML = '<div class="grid-item" style="background-image: url(' + image + ');">' +
-                   '<span class="title">' + name + '</span>' +
-                   '<span class="channel">' + channel + '</span>' +
-                   '</div>';
-    return tileHTML;
+function buildTileHTML(channel, name, image, relevance) {
+    var item_size = '';
+
+    if (relevance > 3 && relevance < 6)
+        item_size = ' grid-item--size2';
+    else if (relevance > 6)
+        item_size = ' grid-item--size3';
+
+    var e = $('<div class="grid-item' + item_size + '">');
+    e.css('background-image', 'url(' + image + ')');
+    e.append($('<span class="title" />').html(name));
+    e.append($('<span class="channel" />').html(channel));
+
+    return e.get(0);
 }
 
 // Add addHours functionality to Date
