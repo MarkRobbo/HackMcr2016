@@ -1,5 +1,13 @@
 * { box-sizing: border-box; }
 
+html, body, .container-fluid {
+    width: 100%
+}
+
+.container-fluid {
+    overflow: hidden
+}
+
 .page-header h1 {
     color: white;
 }
@@ -92,18 +100,21 @@
     left: 0;
 }
 
-.grid-item.desciption {
+.grid-item .description-container{
     display: none;
 }
 
-.grid-item.desciption.expanded {
+.grid-item.expanded .description-container{
+    display: block;
     font-size: 16px;
     position: absolute;
+    color: white;
     bottom: 0;
     right: 0;
-    left: 325px;
-    width: 300px;
+    left: 345px;
+    width: 280px;
     height: 480px;
+    padding: 10px 10px 10px 10px;
 }
 
 .slider-selection {

@@ -142,9 +142,6 @@ function Grid ()
     function add_new (new_tiles) {
         var temp = new_tiles.filter(function (e) {
             return !current_tiles.some(function (f) {
-                console.log(e.equals(f));
-                console.log(e);
-                console.log(f);
                 return e.equals(f);
             });
         });
@@ -259,7 +256,7 @@ Tile.prototype.get_html = function () {
     e.css('background-image', 'url(' + this.get_image() + ')');
     e.append($('<span class="title" />').html(this.get_title()));
     e.append($('<span class="channel" />').html(this.get_channel()));
-    e.append($('<span class="description" />').html(this.get_desc()));
+    e.append($('<div class="description-container"<span class="description" /></div>').html(this.get_desc()));
 
     return e.get(0);
 };
@@ -286,27 +283,8 @@ $(document).ready(function() {
         formatter: function(value) {
             return getTime(value);
         }
-    }).on('slide', grid.refresh);
+    }).on('slideStop', grid.refresh);
 });
-
-// Builds html for a tile
-function buildTileHTML(channel, name, image, relevance) {
-    var item_size = '';
-
-    if (relevance >= 3 && relevance < 6)
-        item_size = ' grid-item--size2';
-    else if (relevance >= 6 && relevance <= 8)
-        item_size = ' grid-item--size3';
-    else if (relevance > 8)
-        item_size = ' grid-item--size4';
-
-    var e = $('<div class="grid-item' + item_size + '">');
-    e.css('background-image', 'url(' + image + ')');
-    e.append($('<span class="title" />').html(name));
-    e.append($('<span class="channel" />').html(channel));
-
-    return e.get(0);
-}
 
 // Add addHours functionality to Date
 Date.prototype.addHours = function(h) {
