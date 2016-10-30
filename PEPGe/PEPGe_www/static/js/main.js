@@ -285,8 +285,23 @@ Tile.prototype.get_html = function () {
     var description = $('<div class="description-container"></div>');
     description.append($('<span class="description" />').html(this.get_desc()));
     var duration = $('<div class="duration-container"></div>');
-    duration.append($('<span class="start" />').html(this.get_start()));
-    duration.append($('<span class="duration" />').html(this.get_duration()));
+    var start = this.get_start();
+    var startInt = parseInt(start);
+    var startDate = new Date(startInt);
+    var progDuration = this.get_duration();
+    var progDurationInt = parseInt(progDuration);
+    progDurationInt = progDurationInt * 1000;
+    progDurationInt = progDurationInt + startInt;
+    var endDate = new Date(progDurationInt);
+
+    var startDateString = startDate.getHours() + ":" + startDate.getMinutes();
+    var endDateString = endDate.getHours() + ":" + endDate.getMinutes();
+
+    var res = "     " + startDateString + " - " + endDateString;
+    channel.append($('<span class="duration" />').html(res));
+
+
+
 
     info.append($(title));
     info.append($(channel));
