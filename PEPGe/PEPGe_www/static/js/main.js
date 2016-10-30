@@ -61,7 +61,7 @@ var CHANNELS = [
     6240, 6241, 6260, 6261, 6272, 6273, 6274, 6365, 6371,
     6390, 6501, 6505, 6506, 6507, 6508, 6510, 6532, 6533,
     6534, 6548, 6753, 6754, 6758, 6761, 6765
-]
+];
 
 function range (start, end) {
     if (end === null) {
@@ -69,7 +69,7 @@ function range (start, end) {
         end = start;
     }
 
-    a = new Array(end - start);
+    var a = new Array(end - start);
     for (var i = 0; i < end - start; i++)
         a[i] = i + start;
 
@@ -97,28 +97,21 @@ $( document ).ready(function() {
 // Updates the grid with new data from the endpoint
 function updateGrid() {
     $.ajax({
-        url: "/tv-listing",
-        method: "POST",
+        url: '/tv-listing',
+        method: 'POST',
         data: {
             channels: CHANNELS.slice(0, 100).join(','),
-            time: new Date().addHours($("#timeSlider").val() - 12).getTime()
+            time: new Date().addHours($('#timeSlider').val() - 12).getTime()
         },
         success: function(programmeData){
-            good_ids = [];
-
-            for (var e in programmeData)
-                good_ids.push(programmeData[e]['id']);
-
-            console.log(good_ids.sort());
-
             // Loop through returned data about each programme and create a tile for it
             var html = [];
             $.each(programmeData, function(channel, programme) {
                 html[html.length] = buildTileHTML(channel, programme['name'], programme['image']);
             });
-            $("#guide").append(html);
-            $(".grid").masonry('reloadItems');
-            $(".grid").masonry('layout');
+            $('#guide').append(html);
+            $('.grid').masonry('reloadItems');
+            $('.grid').masonry('layout');
         }
     });
 }
@@ -141,7 +134,7 @@ Date.prototype.addHours = function(h) {
 // Translates slider time to human readable minutes
 // Time from 0-24, 12 is now
 function getTime(time) {
-    returnStr = "";
+    var returnStr = '';
 
     // Normalise time to be centered around 0
     time = time - 12;
@@ -151,21 +144,22 @@ function getTime(time) {
 
     // 0 is now
     if (time == 0) {
-        return "Now (" + d.getHours() + ":" + ("0" + d.getMinutes()).slice(-2) + ")";
+        return 'Now (' + d.getHours() + ':' + ('0' + d.getMinutes()).slice(-2) + ')';
     }
 
     d.addHours(time);
 
     // Add relative time to string
+    var sign = '';
     if (time > 0) {
-        sign = "+";
+        sign = '+';
     } else {
-        sign = "";
+        sign = '';
     }
-    returnStr += sign + time + "hrs ";
+    returnStr += sign + time + 'hrs ';
 
     // Add absolute time to string
-    returnStr += "(" + d.getHours() + ":" + ("0" + d.getMinutes()).slice(-2) + ")";
+    returnStr += '(' + d.getHours() + ':' + ('0' + d.getMinutes()).slice(-2) + ')';
 
     // Return the time
     return returnStr;
