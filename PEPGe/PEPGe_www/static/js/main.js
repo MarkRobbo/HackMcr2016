@@ -104,6 +104,8 @@ function Grid ()
      */
     function load_data (callback)
     {
+        $("#loading").css("display", "");
+        $(".grid-item").css("opacity", "0.3");
         $.ajax({
             url: '/tv-listing',
             method: 'POST',
@@ -112,6 +114,8 @@ function Grid ()
                 time: new Date().addHours($('#timeSlider').val() - 12).getTime()
             },
             success: function (data) {
+                $("#loading").css("display", "none");
+                $(".grid-item").css("opacity", "");
                 if (callback)
                     callback(data);
             }
