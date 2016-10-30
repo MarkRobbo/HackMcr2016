@@ -11,7 +11,7 @@ $( document ).ready(function() {
         formatter: function(value) {
             return getTime(value);
         }
-    });
+    }).on('slide', updateGrid);
 
     updateGrid();
 });
@@ -20,9 +20,12 @@ $( document ).ready(function() {
 function updateGrid() {
     $.ajax({
         url: "/tv-listing",
-        data: {channels: '2002,2006,6000,1621', time: new Date().getTime()},
+        data: {
+            channels: '2002,2006,6000,1621',
+            time: new Date().addHours($("#timeSlider").val() - 12).getTime()
+        },
         success: function(programmeData){
-            console.log(programmeData)
+            console.log(programmeData);
 
             // Loop through returned data about each programme and create a tile for it
             var html = [];
