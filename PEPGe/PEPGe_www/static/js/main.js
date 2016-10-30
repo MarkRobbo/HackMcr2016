@@ -11,13 +11,14 @@ $( document ).ready(function() {
         formatter: function(value) {
             return getTime(value);
         }
-    }).on('slide', updateGrid);
+    }).on('change', updateGrid);
 
     updateGrid();
 });
 
 // Updates the grid with new data from the endpoint
-function updateGrid() {
+var updateGrid = function() {
+    console.log("update called");
     $.ajax({
         url: "/tv-listing",
         data: {
