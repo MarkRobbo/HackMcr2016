@@ -26,6 +26,8 @@ function updateGrid() {
                 html[html.length] = buildTileHTML(channel, programme['name'], programme['image']);
             });
             $("#guide").append(html);
+            $(".grid").masonry('reloadItems');
+            $(".grid").masonry('layout');
         }
     });
 }
