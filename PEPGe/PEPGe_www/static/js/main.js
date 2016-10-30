@@ -91,6 +91,11 @@ $( document ).ready(function() {
         }
     }).on('slide', updateGrid);
 
+    $('.grid').on('click', '.grid-item', function () {
+        $(this).toggleClass('expanded');
+        $('.grid').masonry();
+    });
+
     updateGrid();
 });
 

@@ -29,8 +29,17 @@
     background-origin: center;
 }
 
+.grid-item:hover {
+    cursor:pointer
+}
+
 .grid-item--size2 { width: 205px; height: 320px; }
 .grid-item--size3 { width: 310px; height: 480px; }
+
+.grid-item.expanded {
+    width: 625px;
+    height: 480px;
+}
 
 #slider {
     width: 100%;
