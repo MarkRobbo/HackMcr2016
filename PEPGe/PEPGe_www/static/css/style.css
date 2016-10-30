@@ -31,15 +31,29 @@
 
 .grid-item--size2 { width: 155px; height: 240px; }
 .grid-item--size3 { width: 210px; height: 320px; }
-.grid-item--size3 { width: 265px; height: 400px; }
+.grid-item--size4 { width: 265px; height: 400px; }
 
-.grid-item:hover {
-    cursor:pointer
+.grid-item .description {
+   display: none;
+}
+
+.grid-item.expanded .description {
+    display: block;
+    font-size: 16px;
+    position: absolute;
+    bottom: 0;
+    left: 0;
 }
 
 .grid-item.expanded {
-    width: 625px;
-    height: 480px;
+   width: 625px;
+   height: 480px;
+   background-size: contain;
+   background-color: #13253D;
+}
+
+.grid-item:hover {
+    cursor:pointer;
 }
 
 #slider {

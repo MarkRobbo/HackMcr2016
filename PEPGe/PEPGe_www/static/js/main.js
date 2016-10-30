@@ -210,10 +210,12 @@ Tile.prototype.equals = function (other) {
 Tile.prototype.get_html = function () {
     var item_size = '';
 
-    if (this.get_relevance() > 3 && this.get_relevance() < 6)
+    if (this.get_relevance() >= 3 && this.get_relevance() < 6)
         item_size = ' grid-item--size2';
-    else if (this.get_relevance() > 6)
+    else if (this.get_relevance() >= 6 && this.get_relevance() <= 8)
         item_size = ' grid-item--size3';
+    else if (this.get_relevance() > 8)
+        item_size = ' grid-item--size4';
 
     var e = $('<div class="grid-item' + item_size + '">');
     e.css('background-image', 'url(' + this.get_image() + ')');
