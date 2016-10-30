@@ -12,9 +12,22 @@ html, body, .container-fluid {
     color: white;
 }
 
+#main {
+    min-height: 500px;
+}
+
+#loading {
+    position: absolute;
+    top: 0;
+    left: calc(50% - 88px);
+    margin: 100px auto;
+    width: 175px;
+    height: 175px;
+}
+
 .grid {
     background-color:rgba(0, 0, 0, 0.0);
-    max-width: 1200px;
+    max-width: 1200px
 }
 
 /* clearfix */
@@ -41,16 +54,12 @@ html, body, .container-fluid {
 .grid-item--size3 { width: 210px; height: 320px; }
 .grid-item--size4 { width: 265px; height: 400px; }
 
-.grid-item .description {
-   display: none;
-}
 
-.grid-item.expanded .description {
+.grid-item .description {
     display: block;
     font-size: 16px;
     position: absolute;
-    bottom: 0;
-    left: 0;
+    padding: 10px 10px 10px 10px;
 }
 
 .grid-item.expanded {
@@ -93,6 +102,22 @@ html, body, .container-fluid {
     left: 0;
 }
 
+.grid-item.expanded .title {
+    display: none;
+}
+
+span.d-title {
+    font-weight: bold;
+}
+
+span.d-channel {
+    font-style: italic;
+}
+
+.grid-item.expanded .channel {
+    display: none;
+}
+
 .grid-item .channel {
     font-size: 16px;
     position: absolute;
@@ -100,11 +125,11 @@ html, body, .container-fluid {
     left: 0;
 }
 
-.grid-item .description-container{
+.grid-item .info-container{
     display: none;
 }
 
-.grid-item.expanded .description-container{
+.grid-item.expanded .info-container{
     display: block;
     font-size: 16px;
     position: absolute;
@@ -114,7 +139,7 @@ html, body, .container-fluid {
     left: 345px;
     width: 280px;
     height: 480px;
-    padding: 10px 10px 10px 10px;
+    padding: 10px 10px 10px 0px;
 }
 
 .slider-selection {
