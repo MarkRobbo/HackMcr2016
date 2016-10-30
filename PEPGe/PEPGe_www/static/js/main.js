@@ -119,6 +119,44 @@ function Grid ()
     }
 
     /**
+     * Remove shows no longer airing.
+     */
+    function remove_old (new_tiles)
+    {
+        var temp = current_tiles.filter(function (e) {
+            return new_tiles.some(function (f) {
+                return e.equals(f);
+            });
+        });
+
+        temp = $(temp.map(function (e) {
+            return e.get_html();
+        }));
+
+        $grid.masonry('remove', temp);
+    }
+
+    /**
+     * Add shows that have started airing.
+     */
+    function add_new (new_tiles) {
+        var temp = new_tiles.filter(function (e) {
+            return !current_tiles.some(function (f) {
+                console.log(e.equals(f));
+                console.log(e);
+                console.log(f);
+                return e.equals(f);
+            });
+        });
+
+        temp = $(temp.map(function (e) {
+            return e.get_html();
+        }));
+
+        $grid.prepend(temp).masonry('prepended', temp, true);
+    }
+
+    /**
      * Update the grid with the given program data.
      */
     function update_grid (program)
@@ -133,11 +171,11 @@ function Grid ()
                                     show['relevance']));
         });
 
-        var temp = $(new_tiles.map(function (e) {
-            return e.get_html();
-        }));
+        remove_old(new_tiles);
+        add_new(new_tiles);
 
-        $grid.prepend(temp).masonry('prepended', temp, true);
+        current_tiles = new_tiles;
+
         $grid.masonry('reloadItems');
         $grid.masonry('layout');
     }
