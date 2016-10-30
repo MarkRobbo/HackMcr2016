@@ -73,23 +73,35 @@ function Grid ()
      */
     var $grid = $('.grid');
 
+    /**
+     * The tiles currently displayed.
+     */
+    var current_tiles = [];
+
+    // Initialize the masonry grid.
     $grid.masonry({
         itemSelector: '.grid-item',
         columnWidth: 50,
         gutter: 5
     });
 
-    var current_tiles = [];
-    $grid.masonry();
-
+    /**
+     * The function run when a grid item is clicked.
+     *
+     * this refers to the grid item in this context.
+     */
     function click_handler ()
     {
-        console.log(this);
         $(this).toggleClass('expanded');
         $grid.masonry();
     }
     $grid.on('click', '.grid-item', click_handler);
 
+    /**
+     * Load the program data from the backend.
+     *
+     * Retrieved data is passed to the callback function.
+     */
     function load_data (callback)
     {
         $.ajax({
@@ -106,6 +118,9 @@ function Grid ()
         });
     }
 
+    /**
+     * Update the grid with the given program data.
+     */
     function update_grid (program)
     {
         var new_tiles = [];
@@ -127,6 +142,10 @@ function Grid ()
         $grid.masonry('layout');
     }
 
+    /**
+     * Refresh the grid, retrieving fresh data and updating the grid
+     * in one go.
+     */
     this.refresh = function () {
         load_data(function temp (data) {
             update_grid(data);
@@ -134,29 +153,50 @@ function Grid ()
     };
 }
 
+/**
+ * Grid entries.
+ */
 function Tile (title, channel, desc, image, relevance)
 {
+    /**
+     * Get the title of the slot this object represents.
+     */
     this.get_title = function () {
         return title;
     };
 
+    /**
+     * Get the channel to which this slot belongs.
+     */
     this.get_channel = function () {
         return channel;
     };
 
+    /**
+     * Get the description of this slot.
+     */
     this.get_desc = function () {
         return desc;
     };
 
+    /**
+     * Get the background image for this slot.
+     */
     this.get_image = function () {
         return image;
     };
 
+    /**
+     * Get the relevance rating for this slot.
+     */
     this.get_relevance = function () {
         return relevance;
     };
 }
 
+/**
+* Whether a tile is equal to another.
+*/
 Tile.prototype.equals = function (other) {
     return this.get_title() === other.get_title()
         && this.get_channel() === other.get_channel()
@@ -164,6 +204,9 @@ Tile.prototype.equals = function (other) {
         && this.get_relevance() === other.get_relevance();
 };
 
+/**
+* Get the html that creates the tile.
+*/
 Tile.prototype.get_html = function () {
     var item_size = '';
 
