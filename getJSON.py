@@ -50,4 +50,4 @@ if __name__ == '__main__':
             show = new[i]
             y = show.replace(' ', '%20')
             print(y)
-            print(getRating(y))
+            getRating(y)

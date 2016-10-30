@@ -138,5 +138,7 @@ def get_channel_data(channels, duration, detail=2, siteId=1, time=None):
         ret[channel['title']]['status'] = channel['program']['scheduleStatus']
         ret[channel['title']]['image'] = channel['program']['image']
         ret[channel['title']]['relevance'] = channel['program']['rating']
+        ret[channel['title']]['genre'] = channel['program']['genre']
+        ret[channel['title']]['subgenre'] = channel['program']['subgenre']
 
     return ret
