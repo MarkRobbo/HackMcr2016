@@ -31,7 +31,7 @@
 
 .grid-item--size2 { width: 155px; height: 240px; }
 .grid-item--size3 { width: 210px; height: 320px; }
-.grid-item--size3 { width: 265px; height: 400px; }
+.grid-item--size4 { width: 265px; height: 400px; }
 
 .grid-item:hover {
     cursor:pointer
@@ -40,6 +40,8 @@
 .grid-item.expanded {
     width: 625px;
     height: 480px;
+    background-size: contain;
+    background-color: #13253D;
 }
 
 #slider {
@@ -72,6 +74,17 @@
 }
 
 .grid-item .channel {
+    font-size: 16px;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+}
+
+.grid-item.desciption {
+    display: none;
+}
+
+.grid-item.desciption.expanded {
     font-size: 16px;
     position: absolute;
     bottom: 0;

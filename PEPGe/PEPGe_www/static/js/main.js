@@ -206,6 +206,25 @@ $(document).ready(function() {
     }).on('slide', grid.refresh);
 });
 
+// Builds html for a tile
+function buildTileHTML(channel, name, image, relevance) {
+    var item_size = '';
+
+    if (relevance >= 3 && relevance < 6)
+        item_size = ' grid-item--size2';
+    else if (relevance >= 6 && relevance <= 8)
+        item_size = ' grid-item--size3';
+    else if (relevance > 8)
+        item_size = ' grid-item--size4';
+
+    var e = $('<div class="grid-item' + item_size + '">');
+    e.css('background-image', 'url(' + image + ')');
+    e.append($('<span class="title" />').html(name));
+    e.append($('<span class="channel" />').html(channel));
+
+    return e.get(0);
+}
+
 // Add addHours functionality to Date
 Date.prototype.addHours = function(h) {
     this.setTime(this.getTime() + (h*60*60*1000));
