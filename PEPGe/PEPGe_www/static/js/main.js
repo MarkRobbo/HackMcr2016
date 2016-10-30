@@ -165,7 +165,9 @@ function Grid ()
                                     channel,
                                     show['desc'],
                                     show['image'],
-                                    show['relevance']));
+                                    show['relevance'],
+                                    show['start'],
+                                    show['duration']));
         });
 
         remove_old(new_tiles);
@@ -191,7 +193,7 @@ function Grid ()
 /**
  * Grid entries.
  */
-function Tile (title, channel, desc, image, relevance)
+function Tile (title, channel, desc, image, relevance, start, duration)
 {
     /**
      * Get the title of the slot this object represents.
@@ -227,6 +229,20 @@ function Tile (title, channel, desc, image, relevance)
     this.get_relevance = function () {
         return relevance;
     };
+
+    /**
+     * Get the time of the show.
+     */
+     this.get_start = function () {
+        return start;
+     };
+
+    /**
+     * Get the time of the show.
+     */
+     this.get_duration = function () {
+        return duration;
+     };
 }
 
 /**
@@ -256,8 +272,23 @@ Tile.prototype.get_html = function () {
     e.css('background-image', 'url(' + this.get_image() + ')');
     e.append($('<span class="title" />').html(this.get_title()));
     e.append($('<span class="channel" />').html(this.get_channel()));
-    e.append($('<div class="description-container"<span class="description" /></div>').html(this.get_desc()));
 
+    var info = $('<div class="info-container"></div>');
+    var title = $('<div class="title-container"></div>');
+    title.append($('<span class="d-title" />').html(this.get_title()));
+    var channel = $('<div class="channel-container"></div>');
+    channel.append($('<span class="d-channel" />').html(this.get_channel()));
+    var description = $('<div class="description-container"></div>');
+    description.append($('<span class="description" />').html(this.get_desc()));
+    var duration = $('<div class="duration-container"></div>');
+    duration.append($('<span class="start" />').html(this.get_start()));
+    duration.append($('<span class="duration" />').html(this.get_duration()));
+
+    info.append($(title));
+    info.append($(channel));
+    info.append($(description));
+    info.append($(duration));
+    e.append($(info));
     return e.get(0);
 };
 
