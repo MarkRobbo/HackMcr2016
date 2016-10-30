@@ -80,9 +80,11 @@ def append_tvmaze_info(channel_data):
         for show in show_list:
             extra = get_more_info(show['title'])
             try:
+                show['score'] = extra[0]['score']
                 show['rating'] = extra[0]['show']['rating']['average']
                 show['image'] = extra[0]['show']['image']['medium']
             except:
+                show['score'] = 0
                 show['rating'] = 0
                 show['image'] = '/static/images/video.png'
 
@@ -140,6 +142,7 @@ def get_channel_data(channels, duration, detail=2, siteId=1, time=None):
         ret[channel['title']]['status'] = channel['program']['scheduleStatus']
         ret[channel['title']]['image'] = channel['program']['image']
         ret[channel['title']]['relevance'] = channel['program']['rating']
+        ret[channel['title']]['score'] = channel['program']['score']
         ret[channel['title']]['genre'] = channel['program']['genre']
         ret[channel['title']]['subgenre'] = channel['program']['subgenre']
         ret[channel['title']]['id'] = channel['program']['channelid']

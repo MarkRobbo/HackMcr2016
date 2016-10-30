@@ -181,6 +181,11 @@ function Grid ()
 
         $grid.masonry('reloadItems');
         $grid.masonry('layout');
+
+        $('.rating').barrating({
+            theme: 'fontawesome-stars',
+            readonly: true
+        });
     }
 
     /**
