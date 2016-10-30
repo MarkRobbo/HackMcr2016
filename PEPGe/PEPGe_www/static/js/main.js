@@ -10,7 +10,7 @@ $( document ).ready(function() {
         formatter: function(value) {
             return getTime(value);
         }
-    });
+    }).on('slide', updateGrid);
 
     updateGrid();
 });
