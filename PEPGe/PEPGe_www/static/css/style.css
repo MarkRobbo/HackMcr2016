@@ -1,9 +1,8 @@
 * { box-sizing: border-box; }
 
-body { font-family: sans-serif; }
 
 .grid {
-    background: #EEE;
+    background-color:rgba(0, 0, 0, 0.0);
     max-width: 1200px;
 }
 
@@ -16,26 +15,19 @@ body { font-family: sans-serif; }
 
 .grid-item {
     position: relative;
-    width: 160px;
-    height: 120px;
+    width: 100px;
+    height: 160px;
     float: left;
+    margin-bottom: 5px;
     background: #000;
-    border: 1px solid #000;
-    border-color: hsla(0, 0%, 0%, 0.5);
-    border-radius: 5px;
     background-image: url("https://images-na.ssl-images-amazon.com/images/M/MV5BMTQ0ODYzODc0OV5BMl5BanBnXkFtZTgwMDk3OTcyMDE@._V1_SY1000_CR0,0,678,1000_AL_.jpg");
     background-size: cover;
     background-repeat: no-repeat;
     background-origin: center;
 }
 
-.grid-item--width2 { width: 320px; }
-.grid-item--width3 { width: 480px; }
-.grid-item--width4 { width: 640px; }
-
-.grid-item--height2 { height: 200px; }
-.grid-item--height3 { height: 260px; }
-.grid-item--height4 { height: 360px; }
+.grid-item--size2 { width: 205px; height: 320px; }
+.grid-item--size3 { width: 310px; height: 480px; }
 
 #slider {
     width: 100%;
@@ -73,4 +65,24 @@ body { font-family: sans-serif; }
     left: 0;
 }
 
+.slider-selection {
+    display:none;
+}
 
+body {
+    background: #11244C url('http://go.sky.com/images/general/background.jpeg');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: top center;
+    color: #fff;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale
+}
+
+body {
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #333;
+    background-color: #fff;
+}

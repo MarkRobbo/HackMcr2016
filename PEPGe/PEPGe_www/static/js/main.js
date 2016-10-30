@@ -2,7 +2,8 @@ $( document ).ready(function() {
 
     $('.grid').masonry({
         itemSelector: '.grid-item',
-        columnWidth: 160
+        columnWidth: 100,
+        gutter:5
     });
 
     $('#timeSlider').slider({
