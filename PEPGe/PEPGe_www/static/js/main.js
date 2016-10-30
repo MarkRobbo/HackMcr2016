@@ -305,10 +305,30 @@ Tile.prototype.get_html = function () {
     var res = "     " + startDateString + " - " + endDateString;
     channel.append($('<span class="duration" />').html(res));
 
+    var relevance = Math.round(this.get_relevance() / 2);
 
-
+    // Im so sorry, its 20 mins before the deadline
+    var one = "";
+    var two = "";
+    var three = "";
+    var four = "";
+    var five = "";
+    // this is a crime
+    if (relevance == 1) {
+        one = "selected";
+    } else if (relevance == 2) {
+        two = "selected";
+    } else if (relevance == 3) {
+        three = "selected";
+    } else if (relevance == 4) {
+        four = "selected";
+    } else if (relevance == 5) {
+        five = "selected"
+    }
+    var rating = $('<select class="rating"><option value="1" ' + one + '>1</option><option value="2" ' + two + '>2</option> <option value="3" ' + three + '>3</option> <option value="4" ' + four + '>4</option> <option value="5" ' + five + '>5</option> </select>');
 
     info.append($(title));
+    info.append($(rating));
     info.append($(channel));
     info.append($(description));
     info.append($(duration));
